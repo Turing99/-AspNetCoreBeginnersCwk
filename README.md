@@ -1,1 +1,1 @@
-# -AspNetCoreBeginnersCwk
+# AspNetCoreBeginnersCwk

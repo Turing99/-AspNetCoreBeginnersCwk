@@ -1,3 +1,5 @@
+using Booking.Api.Services;
+using Booking.Api.Services.Abstraction;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +29,21 @@ namespace Booking.Api
             });
 
             services.AddSingleton<DataSource>();
+
+            //Will create an instance the first time it is required.
+            //Afterwards it always passes the exact same instance to all consumers
+            services.AddSingleton<MyFirstService>();
+
+
+            //Will create an instance each time that it is required
+            //services.AddTransient();
+
+            //It creates and instance for each request
+            //services.AddScoped();
+
+            services.AddSingleton<ISingletonOperation, SingletonOperation>();
+            services.AddTransient<ITransientOperation, TransientOperation>();
+            services.AddScoped<IScopedOperation, ScopedOperation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
